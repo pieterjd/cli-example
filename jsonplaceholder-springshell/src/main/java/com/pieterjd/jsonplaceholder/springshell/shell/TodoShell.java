@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
+import org.springframework.shell.table.*;
 
 import java.util.List;
 
@@ -23,5 +24,17 @@ public class TodoShell {
     @ShellMethod("Get all todos")
     public List<Todo> getTodos() {
         return todoService.getAll();
+    }
+    @ShellMethod("get all todos in a table - use 0 to get all todos")
+    public String getTodosTable(@ShellOption(defaultValue = "0") int amount){
+        List<Todo> todos = todoService.getAll();
+
+        if(amount != 0)  todos = todos.subList(0,amount);
+        TableModel tableModel = new BeanListTableModel<>(todos,"title","completed");
+        return new TableBuilder(tableModel)
+            .addHeaderBorder(BorderStyle.fancy_light)
+            .addFullBorder(BorderStyle.oldschool)
+             .build().render(160);
+
     }
 }
