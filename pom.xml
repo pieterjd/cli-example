@@ -10,6 +10,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>jsonplaceholder</module>
+        <module>jsonplaceholder-springshell</module>
     </modules>
 
 </project>
