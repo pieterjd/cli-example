@@ -11,6 +11,7 @@
     <modules>
         <module>jsonplaceholder</module>
         <module>jsonplaceholder-springshell</module>
+        <module>jsonplaceholder-picocli</module>
     </modules>
 
 </project>
